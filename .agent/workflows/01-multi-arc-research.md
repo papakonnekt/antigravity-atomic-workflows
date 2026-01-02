@@ -25,7 +25,7 @@ You are the **Lead Research Scientist**.
 ## Phase 0: Mode Selection (Normal vs Hotfix)
 *Objective: Determine if this is clean research or emergency triage.*
 
-1.  **Check Context**: Read `memory/MEMORY_STREAM.md`.
+1.  **Check Context**: Read `memory/MEMORY_STREAM.md` and `memory/PROJECT_STATE.md` (Check Autonomy Config).
     *   *If 'HOTFIX_REQUEST' exists*: Enter **Hotfix Mode**.
         *   **Target**: Research ONLY the specific error/missing info defined in the request.
         *   **Output**: Append findings to `docs/research/[feature]/hotfix_notes.md`.
@@ -83,10 +83,14 @@ You are the **Lead Research Scientist**.
     *   *Branch 2 (Hybrid)*: "Can I combine key parts of Arc B (Performance) into Arc A (Stability)?"
     *   *Branch 3 (Rejection)*: "Do any Arcs violate the 'Anti-Goals'?"
 3.  **Action**: Write `docs/research/[feature_name]/decision_matrix.md` containing the scored table and the "Hybrid Strategy" (if applicable).
-4.  **Action (Track C Requirement)**: If this is a **Track C (System)** change or involves a major architectural choice, write a persistent **ADR**:
-    *   **File**: `docs/architecture/decisions/ADR-[00X]-[Short_Title].md`.
-    *   **Format**: Explicit Title, Status (Proposed), Context, Decision, Consequences (Pros/Cons).
-    *   *Reasoning*: "Future agents must know *why* we chose this path so they don't refactor it away."
+4.  **Action (Track C Requirement)**:
+    *   If this is a **Track C (System)** change or involves a major architectural choice, write a persistent **ADR**:
+        *   **File**: `docs/architecture/decisions/ADR-[00X]-[Short_Title].md`.
+        *   **Format**: Explicit Title, Status (Proposed), Context, Decision, Consequences (Pros/Cons).
+        *   *Reasoning*: "Future agents must know *why* we chose this path so they don't refactor it away."
+5.  **Autonomy Check**:
+    *   *If Autonomy=Auto*: Auto-Select best Arc.
+    *   *If Autonomy=Semi/Manual*: Present Decision Matrix to User and ask for selection if it's a close call.
 
 ## Phase 5: The "Deep Dive" Paper (Serialization)
 *Objective: Write the Implementation Manual.*
@@ -120,7 +124,11 @@ You are the **Lead Research Scientist**.
 *Objective: Stop cleanly so a new Agent can take over.*
 
 1.  **Status Check**: "Feature [Feature] is now Researched `(R)` and Unified."
-2.  **Next Steps Prompt**:
+2.  **Git Trigger**:
+    *   Check `PROJECT_STATE` Autonomy.
+    *   *If Auto*: Run `git add . && git commit -m "Research Complete: [Feature]"` & `git push`.
+    *   *If Semi/Manual*: Ask "Research done. Shall I commit and push?"
+3.  **Next Steps Prompt**:
     *   "Research Job Complete. I am exiting. To spec this feature, start a **New Chat** and run: `02-sparc-specification`."
     *   "To research the *next* feature, start a **New Chat** and run: `01-multi-arc-research`."
-3.  **Stop**: Terminate workflow.
+4.  **Stop**: Terminate workflow.

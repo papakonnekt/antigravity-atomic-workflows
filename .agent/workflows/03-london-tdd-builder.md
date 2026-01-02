@@ -23,7 +23,7 @@ You are the **Senior Software Engineer (Test-Focused)**.
 ## Phase 0: Job Hunt & Lock
 *Objective: Find work.*
 
-1.  **Read** `memory/PROJECT_STATE.md` and `memory/KNOWLEDGE_BASE.md` (Check for implementation patterns).
+1.  **Read** `memory/PROJECT_STATE.md` and `memory/KNOWLEDGE_BASE.md`.
 2.  **Scan**: Find the **First** feature with status `(S)` (Specified) that is NOT `(B)` or `(V)`.
 3.  **Lock**: Update status to `(B)` (Building).
 
@@ -45,10 +45,12 @@ You are the **Senior Software Engineer (Test-Focused)**.
 *Objective: Make the test pass. Minimum Viable Code.*
 
 1.  **Action**: Create/Update the source file `src/[feature].ts`.
-2.  **Code**: Write the *minimum* code required to pass the test.
-    *   *Constraint*: Do not "Gold Plate". Just make it Green.
-3.  **Run Test**: Execute `npm test`.
-4.  **Loop**:
+2.  **Autonomy Check**:
+    *   *If Manual*: Ask user "Proposed Code: [Summary]. Shall I write this?" before creating source file.
+    *   *If Auto/Semi*: Proceed.
+3.  **Code**: Write the *minimum* code required to pass the test.
+4.  **Run Test**: Execute `npm test`.
+5.  **Loop**:
     *   *If Red*: Debug and Fix.
     *   *If Green*: Proceed.
 
@@ -65,9 +67,9 @@ You are the **Senior Software Engineer (Test-Focused)**.
 1.  **Check**: "Does this feature involve UI/DOM elements?"
     *   *If No*: Skip.
     *   *If Yes*:
-2.  **Action**: Add a Snapshot Assertion to the test (e.g., `expect(container).toMatchSnapshot()`).
-3.  **Update**: Run `npm test -- -u` (or equivalent) to generate the initial snapshot.
-4.  **Reflect**: Inspect the snapshot file. Does the structure look correct?
+2.  **Action**: Add a Snapshot Assertion to the test.
+3.  **Update**: Run `npm test -- -u`.
+4.  **Reflect**: Inspect the snapshot file.
 
 ## Phase 4: Recursive TDD with Context Shedding
 *Objective: Complete all specs without crashing memory.*
@@ -87,8 +89,12 @@ You are the **Senior Software Engineer (Test-Focused)**.
 2.  **Action**: Write an Integration Test (if applicable) or a simple script to verify the exports match the Spec.
 
 ## Phase 6: Atomic Exit (The Swarm Handoff)
-1.  **Action**: Update `memory/PROJECT_STATE.md` status to `(V)` (Ready for Verification).
-2.  **Report**: "Feature [Feature] implemented. Test Suite Green. Ready for `04-bmo-triangulation`."
-3.  **Next Steps Prompt**:
+1.  **Git Trigger**:
+    *   Check `PROJECT_STATE` Autonomy.
+    *   *If Auto*: Run `git add . && git commit -m "Build Complete: [Feature]"` & `git push`.
+    *   *If Semi/Manual*: Ask "Build Green. Shall I commit and push?"
+2.  **Action**: Update `memory/PROJECT_STATE.md` status to `(V)` (Ready for Verification).
+3.  **Report**: "Feature [Feature] implemented. Test Suite Green. Ready for `04-bmo-triangulation`."
+4.  **Next Steps Prompt**:
     *   "Build Job Complete. I am exiting. To verify this feature, start a **New Chat** and run: `04-bmo-triangulation`."
-4.  **Stop**: Terminate workflow.
+5.  **Stop**: Terminate workflow.

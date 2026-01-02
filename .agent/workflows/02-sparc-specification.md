@@ -25,7 +25,7 @@ You are the **Senior Systems Engineer** & **Devil's Advocate**.
 ## Phase 1: Job Hunt & Context Absorption
 *Objective: Find the next Ready-for-Spec feature.*
 
-1.  **Read** `memory/PROJECT_STATE.md` and `memory/KNOWLEDGE_BASE.md` (Ensure specs align with established patterns).
+1.  **Read** `memory/PROJECT_STATE.md` and `memory/KNOWLEDGE_BASE.md`.
 2.  **Scan**: Find the **First** feature with status `(R)` (Researched) that is NOT yet `(S)`.
 3.  **Read** the corresponding `docs/research/[feature]/deep_dive.md`.
 4.  **Read** the `docs/architecture/system_architecture_manifest.md`.
@@ -106,15 +106,21 @@ You are the **Senior Systems Engineer** & **Devil's Advocate**.
 2.  **Decision**:
     *   *FAIL*: If gaps exist, loop back to Phase 3.
     *   *PASS*: 
-        *   **Action**: Write `memory/openspec/changes/[feature]/readiness_report.md` with status **green**.
-        *   **Action (Promote)**: Copy the contents of `memory/openspec/changes/[feature]/specs/` to `docs/specs/[feature]/`. This makes it the "Current Truth".
+        *   **Autonomy Check**:
+            *   *If Fully Auto*: Proceed to Promote immediately.
+            *   *If Semi/Manual*: Show `readiness_report.md` path and ask: "Specs ready. Shall I promote them to 'Current Truth'?"
+        *   **Action (Promote)**: Copy `memory/openspec/changes/[feature]/specs/` to `docs/specs/[feature]/`.
 
 ## Phase 8: Atomic Exit (The Swarm Handoff)
 *Objective: Stop cleanly so a new Agent can take over.*
 
-1.  **Update State**: Change feature status in `PROJECT_STATE.md` from `(R)` to `(S)`.
-2.  **Memory Prune**: Summarize the Spec decisions into `MEMORY_STREAM.md`.
-3.  **Next Steps Prompt**:
+1.  **Git Trigger**:
+    *   Check `PROJECT_STATE` Autonomy.
+    *   *If Auto*: Run `git add . && git commit -m "Spec Complete: [Feature]"` & `git push`.
+    *   *If Semi/Manual*: Ask "Spec promoted. Shall I commit and push?"
+2.  **Update State**: Change feature status in `PROJECT_STATE.md` from `(R)` to `(S)`.
+3.  **Memory Prune**: Summarize the Spec decisions into `MEMORY_STREAM.md`.
+4.  **Next Steps Prompt**:
     *   "Spec Job Complete. Proposal Approved & Promoted. I am exiting. To build this feature, start a **New Chat** and run: `03-london-tdd-builder`."
     *   "To spec the *next* feature, start a **New Chat** and run: `02-sparc-specification`."
-4.  **Stop**: Terminate workflow.
+5.  **Stop**: Terminate workflow.
