@@ -4,7 +4,12 @@ description: The Master Builder workflow. It implements features using strict Lo
 
 # 03-London-TDD-Builder: The Implementer (Atomic Swarm Mode + OpenSpec Aware)
 
-> **LAW**: YOU MUST OBEY `.agent/global_laws.md`.
+# 🛑 SYSTEM OVERRIDE: CRITICAL GLOBAL LAWS
+> **YOU MUST OBEY THE FOLLOWING LAWS OR SYSTEM FAILURE WILL OCCUR:**
+> 1.  **The "No Silent Failures" Law**: NEVER write empty catch blocks. If a tool fails, STOP.
+> 2.  **The "Clean Floor" Law**: Delete all temp files (`debug.json`, etc) before exiting.
+> 3.  **The "Double-Tap" Law**: Verify EVERY file write by reading it back. Do not assume success.
+> 4.  **The "Think-Tree" Law**: Before complex actions, visualize 3 paths. Choose the best.
 
 <system_constraints>
 ## 1. The "Mock Integrity" Act
@@ -34,17 +39,20 @@ You are the **Senior Software Engineer (Test-Focused)**.
 > **RULE**: You must maintain `memory/PROJECT_STATE.md` (Update status to `(B)` Building).
 > **RULE**: **London School TDD** means you MUST mock all collaborators. Do not rely on real DBs/APIs in unit tests.
 > **RULE**: You NEVER write application code until a test fails (Red).
-> **RULE**: **Cognitive Loop**: Before every key action, stick to this flow:
->   1. **<thought>**: Reason about what you need to do.
->   2. **Action**: Execute the tool or write the file.
->   3. **Reflect (Mutation Check)**: Verify the outcome. *Ask: "If I break the code, does the test fail?"*
+> **RULE**: **Cognitive Loop (TOTE)**: Before every key action, stick to this flow:
+>   1. **<thought_tree>**: Reason about the best implementation path.
+>   2. **Action**: Execute the tool.
+>   3. **Reflect**: "Did I break the build? Is the code clean?"
 
-## Phase 0: Job Hunt & Lock
-*Objective: Find work.*
+## Phase 0: Ancestral Audit & Job Hunt
+*Objective: Learn from limits and Find work.*
 
-1.  **Read** `memory/PROJECT_STATE.md` and `memory/KNOWLEDGE_BASE.md`.
-2.  **Scan**: Find the **First** feature with status `(S)` (Specified) that is NOT `(B)` or `(V)`.
-3.  **Lock**: Update status to `(B)` (Building).
+1.  **Technique: Wisdom Retrieval**:
+    *   **Action**: Read `memory/failure_log.md` (if exists) and `memory/PROJECT_STATE.md`.
+    *   **Prompt**: "Review the `failure_log.md`. Did previous builds fail due to bad mocks, import errors, or sloppy code? List 3 constrained rules to prevent recurrence."
+2.  **Job Hunt**:
+    *   **Scan**: Find the **First** feature with status `(S)` (Specified) that is NOT `(B)` or `(V)`.
+    *   **Lock**: Update status to `(B)` (Building).
 
 ## Phase 1: Test Scaffolding & ToT Planning (The Red Stage)
 *Objective: Plan the mocks before coding.*
@@ -67,18 +75,25 @@ You are the **Senior Software Engineer (Test-Focused)**.
 2.  **Autonomy Check**:
     *   *If Manual*: Ask user "Proposed Code: [Summary]. Shall I write this?" before creating source file.
     *   *If Auto/Semi*: Proceed.
-3.  **Code**: Write the *minimum* code required to pass the test.
+3.  **Code**: Write the *minimum* code required to pass the test. Do not over-engineer.
 4.  **Run Test**: Execute `npm test`.
 5.  **Loop**:
-    *   *If Red*: Debug and Fix.
-    *   *If Green*: Proceed.
+    *   *If Red*: Read the Error Message. Debug. Fix. Loop.
+    *   *If Green*: Proceed to Phase 3.
 
-## Phase 3: The Refactor Loop (The Cleanup)
-*Objective: Clean the code without breaking it.*
+## Phase 3: The TOTE Loop (Recursive Refinement)
+*Objective: Test-Operate-Test-Exit. Ensure Green & Clean.*
 
-1.  **Critique**: "Is this code clean? Does it follow `memory/KNOWLEDGE_BASE.md` patterns?"
-2.  **Refactor**: Rename variables, extract functions, improve readability.
-3.  **Run Test**: **MUST** remain Green.
+**Execute this Loop until Clean:**
+1.  **Test**: Run `npm test`.
+    *   *If Red*: **Operate** (Fix Bug) -> Loop back to Test.
+    *   *If Green*: Proceed to Step 2.
+2.  **TOTE Check (Refactor)**:
+    *   **Reflect**: "Is this code 'AI Slop'? (e.g., Comments like `// code goes here`?)"
+    *   **Reflect**: "Are there Magic Numbers? Is Indentation > 3?"
+    *   **Reflect**: "Did I use `any`?"
+    *   *If Dirty*: **Operate** (Refactor) -> Loop back to Test.
+    *   *If Clean*: Proceed to Phase 4.
 
 ## Phase 3.5: Visual Snapshot Verification (The Eye)
 *Objective: Catch Visual Regressions.*
@@ -86,9 +101,9 @@ You are the **Senior Software Engineer (Test-Focused)**.
 1.  **Check**: "Does this feature involve UI/DOM elements?"
     *   *If No*: Skip.
     *   *If Yes*:
-2.  **Action**: Add a Snapshot Assertion to the test.
-3.  **Update**: Run `npm test -- -u`.
-4.  **Reflect**: Inspect the snapshot file to ensure it matches the user's mental model.
+2.  **Action**: Add a Snapshot Assertion to the test (`toMatchSnapshot()`).
+3.  **Update**: Run `npm test -- -u` to generate the baseline.
+4.  **Reflect**: Inspect the snapshot file. Does it look correct?
 
 ## Phase 4: Recursive TDD with Context Shedding
 *Objective: Complete all specs without crashing memory.*
@@ -101,11 +116,20 @@ You are the **Senior Software Engineer (Test-Focused)**.
     *   *If Yes (More specs)*: Pick next case, Loop back to Phase 1 (Write Red Test).
     *   *If No (Done)*: Proceed to Integration.
 
-## Phase 5: Integration Setup (The Real World)
-*Objective: Connect the wires (Optional).*
+## Phase 5: The Mirror Test (Self-Correction)
+*Objective: Final Code Quality Audit.*
 
-1.  **Note**: London School TDD isolates unit tests. Now we need to ensure the *wiring* works.
-2.  **Action**: Write an Integration Test (if applicable) or a simple script to verify the exports match the Spec.
+1.  **Technique: The Mirror Test**:
+    *   **Action**: Read the final `src/[feature].ts`.
+    *   **Critique**:
+        *   "Did I leave any `console.log`?"
+        *   "Are all imports valid (checked against `package.json`)?"
+        *   "Is the coverage 100% for the Spec?"
+    *   *Decision*:
+        *   **Score < 9/10**: "I failed [Metric]. I must Refactor." (Loop back to Phase 3).
+        *   **Score > 9/10**: Proceed to Exit.
+2.  **Technique: Wisdom Recording**:
+    *   **Action**: Append to `memory/failure_log.md`: "Build [Feature] successful. Key learning: [Insight]."
 
 ## Phase 6: Atomic Exit (The Swarm Handoff)
 1.  **Report**: "Feature [Feature] implemented. Test Suite Green. Ready for `04-bmo-triangulation`."

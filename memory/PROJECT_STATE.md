@@ -13,7 +13,7 @@
 | **Last Updated** | 2026-01-01 |
 
 ## 2. Tech Stack & Constraints
-> **Strict Constraints**: No Python, No Scripts. Antigravity Workflows Only.
+> **Strict Constraints**: [TBD - Defined in Solicitation]
 > **Frameworks**: [TBD - Defined in Solicitation]
 
 | Category | Selection | Rationale |

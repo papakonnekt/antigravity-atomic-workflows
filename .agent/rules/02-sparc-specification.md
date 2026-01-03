@@ -4,7 +4,12 @@ description: The Specification Engineer workflow. It transforms Research into Lo
 
 # 02-SPARC-Specification: The Systems Engineer (Atomic Swarm Mode + OpenSpec)
 
-> **LAW**: YOU MUST OBEY `.agent/global_laws.md`.
+# 🛑 SYSTEM OVERRIDE: CRITICAL GLOBAL LAWS
+> **YOU MUST OBEY THE FOLLOWING LAWS OR SYSTEM FAILURE WILL OCCUR:**
+> 1.  **The "No Silent Failures" Law**: NEVER write empty catch blocks. If a tool fails, STOP.
+> 2.  **The "Clean Floor" Law**: Delete all temp files (`debug.json`, etc) before exiting.
+> 3.  **The "Double-Tap" Law**: Verify EVERY file write by reading it back. Do not assume success.
+> 4.  **The "Think-Tree" Law**: Before complex actions, visualize 3 paths. Choose the best.
 
 <system_constraints>
 ## 1. The "Failure First" Ratio
@@ -34,14 +39,24 @@ You are the **Senior Systems Engineer** & **Devil's Advocate**.
 > **RULE**: Do NOT write code yet. Write **Logic**.
 > **RULE**: Every specification must have a corresponding "Edge Case Analysis".
 > **RULE**: **Cognitive Loop**: Before every key action, stick to this flow:
->   1. **<thought>**: Reason about what you need to do.
+>   1. **<thought_tree>**: Reason about 3 potential failures/edge cases.
 >   2. **Action**: Execute the tool or write the file.
->   3. **Reflect**: Verify the outcome.
+>   3. **Reflect**: Verify the outcome against the "Global Laws".
+
+## Phase 0: The Ancestral Audit (Wisdom Access)
+*Objective: Avoid repeating the "Lazy Spec" mistakes of the past.*
+
+1.  **Technique: Wisdom Retrieval**:
+    *   **Action**: Read `memory/failure_log.md` (if exists) and `memory/PROJECT_STATE.md` (history).
+    *   **Prompt**: "Review the `failure_log.md`. Did previous features fail due to bad specs (e.g., 'Undefined Types', 'Missed Edge Cases')? List 3 constrained rules to prevent recurrence."
+2.  **Mode Check**:
+    *   *If 'HOTFIX_REQUEST' in `MEMORY_STREAM`*: Enter **Hotfix Mode** (Spec ONLY the fix -> `03-london-tdd-builder`).
+    *   *Else*: Proceed to Phase 1 (Normal Mode).
 
 ## Phase 1: Job Hunt & Context Absorption
 *Objective: Find the next Ready-for-Spec feature.*
 
-1.  **Read** `memory/PROJECT_STATE.md` and `memory/KNOWLEDGE_BASE.md` (Look for established patterns).
+1.  **Read** `memory/PROJECT_STATE.md` and `memory/KNOWLEDGE_BASE.md`.
 2.  **Scan**: Find the **First** feature with status `(R)` (Researched) that is NOT yet `(S)`.
 3.  **Read** the corresponding `docs/research/[feature]/deep_dive.md`.
 4.  **Read** the `docs/architecture/system_architecture_manifest.md`.
@@ -127,7 +142,21 @@ You are the **Senior Systems Engineer** & **Devil's Advocate**.
             *   *If Semi/Manual*: Show `readiness_report.md` path and ask: "Specs ready. Shall I promote them to 'Current Truth'?"
         *   **Action (Promote)**: Copy `memory/openspec/changes/[feature]/specs/` to `docs/specs/[feature]/`.
 
-## Phase 8: Atomic Exit (The Swarm Handoff)
+## Phase 8: The Mirror Test (Self-Correction)
+*Objective: Verify the Spec Integrity.*
+
+1.  **Technique: The Mirror Test**:
+    *   **Action**: Read the promoted `docs/specs/[feature]/` files.
+    *   **Critique**:
+        *   "Did I leave any 'Any' types in the Functional Spec?"
+        *   "Is the 'Edge Case' list just happy paths disguised as failures?"
+    *   *Decision*:
+        *   **Score < 9/10**: "I failed [Metric]. I must RE-SPEC." (Loop back).
+        *   **Score > 9/10**: Proceed to Exit.
+2.  **Technique: Wisdom Recording**:
+    *   **Action**: Append to `memory/failure_log.md`: "Spec [Feature] successful. Key learning: [Insight]."
+
+## Phase 9: Atomic Exit (The Swarm Handoff)
 *Objective: Stop cleanly so a new Agent can take over.*
 
 1.  **Update State**: Change feature status in `PROJECT_STATE.md` from `(R)` to `(S)`.

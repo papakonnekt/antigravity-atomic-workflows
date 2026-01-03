@@ -4,7 +4,12 @@ description: The Self-Healing Refinement workflow. It acts as a targeted debugge
 
 # 05-Refinement: The Fixer (Root Cause ToT + Think-Act-Reflect)
 
-> **LAW**: YOU MUST OBEY `.agent/global_laws.md`.
+# 🛑 SYSTEM OVERRIDE: CRITICAL GLOBAL LAWS
+> **YOU MUST OBEY THE FOLLOWING LAWS OR SYSTEM FAILURE WILL OCCUR:**
+> 1.  **The "No Silent Failures" Law**: NEVER write empty catch blocks. If a tool fails, STOP.
+> 2.  **The "Clean Floor" Law**: Delete all temp files (`debug.json`, etc) before exiting.
+> 3.  **The "Double-Tap" Law**: Verify EVERY file write by reading it back. Do not assume success.
+> 4.  **The "Think-Tree" Law**: Before complex actions, visualize 3 paths. Choose the best.
 
 <system_constraints>
 ## 1. The "Band-Aid" Ban
@@ -27,10 +32,17 @@ You are the **Targeted Debugger**.
 
 > **RULE**: You are triggered ONLY when BMO fails.
 > **RULE**: You must read `docs/bmo/[feature]/triangulation_report.md` first.
-> **RULE**: **Cognitive Loop**: Before every key action, stick to this flow:
->   1. **<thought>**: Reason about what you need to do.
->   2. **Action**: Execute the tool or write the file.
->   3. **Reflect**: Verify the outcome.
+> **RULE**: **Cognitive Loop (TOTE)**: Before every key action, stick to this flow:
+>   1. **<thought_tree>**: Reason about the ROOT CAUSE (not just the symptom).
+>   2. **Action**: Execute the fix.
+>   3. **Reflect**: "Did I fix the bug or just mask it?"
+
+## Phase 0: Ancestral Audit & Pattern Recognition
+*Objective: Understand previous failures to match patterns.*
+
+1.  **Technique: Pattern Match**:
+    *   **Action**: Read `memory/failure_log.md` (if exists).
+    *   **Prompt**: "Does this current failure match any historical patterns? (e.g., 'The DB Connection always times out on Tuesday')."
 
 ## Phase 1: Failure Analysis & Circuit Breaker
 *Objective: Understand the Breakage and Prevent Infinite Loops.*
@@ -41,11 +53,11 @@ You are the **Targeted Debugger**.
     *   *If Count <= 3*: Increment `refinement_attempt_count`.
 2.  **Read** `docs/bmo/[feature]/triangulation_report.md`.
 3.  **Read** `docs/bmo/[feature]/system_model_as_built.md`.
-4.  **Technique: Root Cause Tree of Thoughts**:
+4.  **Technique: Root Cause Tree of Thoughts (5 Whys)**:
     *   **<thought>**: "Investigating root cause..."
     *   Investigate 3 Branches to find the *True* source of failure:
-        *   **Branch A (Code Error)**: "Did I write a bug?"
-        *   **Branch B (Test Error)**: "Is the test wrong/flaky?"
+        *   **Branch A (Code Error)**: "Did I write a bug? Is it a syntax or logic error?"
+        *   **Branch B (Test Error)**: "Is the test wrong/flaky? Are the mocks incorrect?"
         *   **Branch C (Spec Drift)**: "Is the Code right, but the Spec is outdated?"
     *   *Selection*: Pick the most probable branch.
 5.  **Action**: Create a "Fix Plan" in `memory/MEMORY_STREAM.md` based on the selected branch.
@@ -57,13 +69,6 @@ You are the **Targeted Debugger**.
 2.  **Constraint**: Apply *only* the necessary fix. Do not rewrite the whole file unless necessary.
 3.  **Action**: If the failure was a "Spec Drift" (Branch C), update `docs/specs/[feature]/` to match the working code.
 
-## Phase 2.5: The Librarian (Anti-Pattern Logging)
-*Objective: Prevent future agents from making this same mistake.*
-
-1.  **Reflect**: "What specific decision caused this failure?" (e.g., "We forgot to await the async call").
-2.  **Action**: Append this "Anti-Pattern" to `memory/KNOWLEDGE_BASE.md`.
-    *   *Format**: `[Date] anti-pattern: DO NOT do X; it causes Y.`
-
 ## Phase 3: The Re-Verification
 *Objective: Prove it works.*
 
@@ -71,12 +76,25 @@ You are the **Targeted Debugger**.
 2.  **Reflect**: Must be Green.
 3.  **Chaos Check**: Re-run the Chaos Test that failed.
 
-## Phase 4: The Sentinel Loop
+## Phase 4: The Mirror Test (Self-Healing)
+*Objective: Validation before Return.*
+
+1.  **Technique: The Mirror Test**:
+    *   **Action**: Review your Diff.
+    *   **Critique**: "Is this a Band-Aid? Did I add a Regression Test?"
+    *   *Decision*:
+        *   **Score < 9/10**: "Bad fix. Revert and Try again." (Loop back to Phase 1).
+        *   **Score > 9/10**: Proceed.
+2.  **Technique: Anti-Pattern Check**:
+    *   **Reflect**: "What specific decision caused this failure?"
+    *   **Action**: Append to `memory/KNOWLEDGE_BASE.md`: `[Date] anti-pattern: DO NOT do X; it causes Y.`
+
+## Phase 5: The Sentinel Loop
 *Objective: Return to BMO.*
 
 1.  **Action**: "Fix Applied and Verified locally."
 2.  **Trigger**: Auto-start `04-bmo-triangulation` again to perform the full certification.
     *   *Note*: This creates a Self-Healing Loop. `04` -> Fail -> `05` -> Fix -> `04` -> Pass.
 
-## Phase 5: Exit
+## Phase 6: Exit
 1.  **Stop**: Hand control back to the BMO Agent.
