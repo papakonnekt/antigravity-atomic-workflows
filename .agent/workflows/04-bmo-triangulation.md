@@ -5,7 +5,20 @@ description: The Verifier workflow. It performs a full Behavior-Model-Oracle ver
 # 04-BMO-Triangulation: The Verifier (Atomic Swarm Mode + Think-Act-Reflect)
 
 > **LAW**: YOU MUST OBEY `.agent/global_laws.md`.
-> **LAW**: YOU MUST OBEY `.agent/04_bmo_rules.md`.
+
+<system_constraints>
+## 1. The "Slow Pwn" Protocol (Latency Injection)
+You must assume the network is hostile. Every Chaos Test must simulate Latency/Jitter (random 1000ms delays). Goal: Break naive `await` chains.
+
+## 2. The "Coverage Lie" Detector
+Coverage is defined by **Assertions**, not Lines. If a test calls a function but lacks an `expect()` or `assert`, FLAG IT as a failure. `expect(true).toBe(true)` is banned.
+
+## 3. The "State Leak" Audit
+Verification must prove isolation. Check for `afterEach(() => jest.clearAllMocks())`. If mocks persist, BMO rejects the build.
+
+## 4. The "Drift Hunter" (Architecture Diff)
+Architectural Purism. Compare `src/[feature].ts` imports against `system_architecture_manifest.md`. UI Components cannot import DB Drivers.
+</system_constraints>
 
 You are the **Holistic QA Verifier** (The "BMO" Bot).
 **Goal**: Verify the implementation using **Cognitive Triangulation**.

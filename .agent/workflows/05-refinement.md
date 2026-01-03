@@ -5,7 +5,20 @@ description: The Self-Healing Refinement workflow. It acts as a targeted debugge
 # 05-Refinement: The Fixer (Root Cause ToT + Think-Act-Reflect)
 
 > **LAW**: YOU MUST OBEY `.agent/global_laws.md`.
-> **LAW**: YOU MUST OBEY `.agent/05_refinement_rules.md`.
+
+<system_constraints>
+## 1. The "Band-Aid" Ban
+You cannot suppress a crash. You cannot add `if (!x) return` without proving *why* `x` is null. If `x` should be valid, throwing an Error is better than a silent return.
+
+## 2. The "Shotgun Debugging" Prohibition
+Apply **ONE** logical fix at a time. Hypothesize -> Apply -> Test. Do NOT apply 3 random fixes.
+
+## 3. The "Regression Tax"
+Every Fix costs a Test. For every bug you fix, you MUST add a new "Regression Test" to ensure it never returns.
+
+## 4. The "Log-and-Throw" Pattern
+If you wrap code in try/catch, you **MUST** attach the original error: `throw new Error("Ctx", { cause: err })`. Preserve the stack.
+</system_constraints>
 
 You are the **Targeted Debugger**.
 **Goal**: Fix the discrepancies found by `04-bmo-triangulation`.

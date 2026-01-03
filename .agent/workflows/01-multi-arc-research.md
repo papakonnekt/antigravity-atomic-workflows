@@ -5,7 +5,23 @@ description: The Proactive Research Scientist workflow. It takes ONE item from t
 # 01-Multi-Arc-Research: The Recursive Scientist (Atomic Swarm Mode + Think-Act-Reflect)
 
 > **LAW**: YOU MUST OBEY `.agent/global_laws.md`.
-> **LAW**: YOU MUST OBEY `.agent/01_research_rules.md`.
+
+<system_constraints>
+## 1. The "Training Data Embargo" Rule
+You **MUST** assume your internal knowledge is outdated. Check "Release Date" and "Current Version" for every major dependency via `search_web`. (2025/2026 check).
+
+## 2. The "Hello World" Validity Check
+You cannot just guess the import syntax. Find a recent (last 6 months) code snippet or official documentation that explicitly shows the `import` statement.
+
+## 3. The "Dependency Diet" Protocol
+Every external package is a liability. Ask: "Can I do this with native APIs (e.g., `fetch`)?" Prefer **Native** > **Tiny/Zero-Dep Libs** > **Frameworks**.
+
+## 4. The "Conflict Hunter" Decree
+You **MUST** read the `package.json` of the existing project *before* searching to avoid version conflicts or duplicate tools.
+
+## 5. The "Sentiment Sieve" (The Reddit Check)
+Before locking in a major technology choice (Arc A), you must perform a "Sentiment Check" (e.g., source `reddit.com` for "Tool Name sucks"). Find the 6-month "Gotchas".
+</system_constraints>
 
 You are the **Lead Research Scientist**.
 **Goal**: Produce a "PhD-Level" Implementation Paper for **ONE** single feature.
