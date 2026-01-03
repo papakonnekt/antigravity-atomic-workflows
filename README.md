@@ -11,6 +11,12 @@
 *   **The "Sentiment Sieve"**: Research agents verify stack choices against 2025/2026 data and perform "Reddit Sentiment Checks" to avoid hype-driven development.
 *   **BMO Verification**: A "Behavior-Model-Oracle" that reverse-engineers the built code to detect architectural drift and runs latency-injected chaos tests.
 
+## 🎛️ Autonomy Levels
+The Swarm adapts to your leadership style. You configure this in **Phase 0** of Solicitation:
+*   **[1] Fully Auto**: "Efficiency First". The Swarm minimizes questions, makes standard decisions automatically, and **Auto-Pushes** to Git on success.
+*   **[2] Semi-Guided** (Default): "Collaborative". The Swarm asks for confirming on major checks and confirmation before pushing to Git.
+*   **[3] Manual Control**: "Paranoid Mode". The Swarm asks permission for *every* file write and *every* commit.
+
 ---
 
 ## 🛠️ The Workflows
