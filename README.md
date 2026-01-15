@@ -20,7 +20,7 @@ Choose your preferred installation method.
 Run this command in your project root to instantly install the swarms:
 
 ```bash
-npx antigravity-atomic-swarms
+npx antigravity-atomic-swarms@latest
 ```
 
 > **⚠️ CRITICAL:** When running a phase, you must select the file from the **`agent/rules`** directory (e.g., `agent/rules/step1-solicitation.md`).
