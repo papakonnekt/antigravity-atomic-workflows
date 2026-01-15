@@ -1,19 +1,37 @@
 name: Publish to NPM
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
           registry-url: 'https://registry.npmjs.org'
+
       - run: npm ci
+
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Action Bot"
+          git config user.email "action@github.com"
+
+      - name: Bump Version
+        run: npm version patch -m "Bump version to %s [skip ci]"
+
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push Version Update
+        run: git push

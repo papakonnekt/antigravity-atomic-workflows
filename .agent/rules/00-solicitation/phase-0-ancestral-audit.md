@@ -20,9 +20,14 @@
 ## Instructions
 
 ### Step 1: Wisdom Retrieval
-**Action**: Read `memory/failure_log.md` (if it exists) and `memory/PROJECT_STATE.md`.
-**Prompt**: "Review the `failure_log.md`. What specific mistake did the previous agent make? List 3 constrained rules to avoid repeating it."
-**Self-Correction**: If no log exists, initialize one.
+**Action**: Read `memory/failure_log.md` and `memory/PROJECT_STATE.md`.
+**Branch 1 (Fresh Start)**:
+- IF `failure_log.md` is MISSING OR contains `Failures: None`:
+    - **Action**: Output "🆕 **Fresh Start Detected**: Starting with a clean slate (No failures recorded)."
+    - **Note**: Proceed directly to setup.
+**Branch 2 (Ongoing)**:
+- IF failures exist:
+    - **Prompt**: "Review the `failure_log.md`. What specific mistake did the previous agent make? List 3 constrained rules to avoid repeating it."
 
 ### Step 2: The Handshake & Tour Guide
 **Action**: You MUST output the following welcome message to orient the user:
