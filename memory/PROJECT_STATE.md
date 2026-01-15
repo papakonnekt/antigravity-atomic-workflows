@@ -25,7 +25,6 @@
 
 ## 3. Anti-Goals (Do NOT Implement)
 > **Critical**: These are explicit boundaries.
-- [ ] Do not use Python or external scripting languages.
 - [ ] [Add more during Solicitation]
 
 ## 4. Feature Roadmap (Kanban)
@@ -42,7 +41,12 @@
 ### B. User Features
 - ( ) [Features to be added Solicitations]
 
-## 5. File Registry (Key Artifacts)
+## 5. Evolution Configuration
+| Key | Value | Description |
+| :--- | :--- | :--- |
+| **Evolution Mode** | `Semi-Auto` | Options: `Off`, `Semi-Auto`, `Fully Auto`. Default: `Semi-Auto`. |
+
+## 6. File Registry (Key Artifacts)
 | Document Type | Path | Status |
 | :--- | :--- | :--- |
 | **Brief** | `docs/project_brief.md` | ( ) |

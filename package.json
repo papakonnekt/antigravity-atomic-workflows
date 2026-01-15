@@ -1,0 +1,24 @@
+{
+    "name": "antigravity-atomic-swarms",
+    "version": "2.1.0",
+    "description": "The Antigravity Atomic Swarms workflow system for agentic coding.",
+    "main": "index.js",
+    "bin": {
+        "antigravity-atomic-swarms": "./bin/cli.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "antigravity",
+        "agentic",
+        "workflow",
+        "ai"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/papakonnekt/antigravity-atomic-swarms.git"
+    },
+    "author": "Antigravity",
+    "license": "MIT"
+}

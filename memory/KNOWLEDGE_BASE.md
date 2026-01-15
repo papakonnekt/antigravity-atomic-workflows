@@ -8,8 +8,7 @@
 1.  **Strict BMO Verification**: No feature is complete until `Intent` matches `Model` matches `Oracle`.
 2.  **London School TDD**: Mocks are mandatory for unit tests. Isolation is key.
 3.  **Multi-Arc Research**: Never accept the first solution. Compare at least two.
-4.  **No Python**: Pure Antigravity Workflows + Node/Web stack only.
-5.  **State Hygiene**: Read `PROJECT_STATE.md` first. Write it last.
+4.  **State Hygiene**: Read `PROJECT_STATE.md` first. Write it last.
 
 ## 2. Established Design Patterns
 *(Empty - To be populated as we build)*
