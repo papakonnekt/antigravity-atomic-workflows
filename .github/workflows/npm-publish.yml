@@ -18,6 +18,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
 
       - run: npm ci
 
@@ -30,6 +31,8 @@ jobs:
         run: npm version patch -m "Bump version to %s [skip ci]"
 
       - run: npm publish --access public
+        env:
+          NPM_CONFIG_PROVENANCE: true
 
       - name: Push Version Update
         run: git push
