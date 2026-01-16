@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Upgrade npm for OIDC support
+        run: npm install -g npm@latest
+
       - run: npm ci
 
       - name: Configure Git
