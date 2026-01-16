@@ -30,7 +30,7 @@ jobs:
       - name: Bump Version
         run: npm version patch -m "Bump version to %s [skip ci]"
 
-      - run: npm publish --provenance
+      - run: npm publish --provenance --access public
 
       - name: Push Version Update
         run: git push
