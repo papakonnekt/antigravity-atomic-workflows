@@ -3,7 +3,7 @@
 ## Overview
 **Goal**: Configure the Project, Extract the Mental Model, and Prime the System.
 **Methodology**: Recursive Elicitation, SCoT, and Cognitive Triangulation.
-**Total Phases**: 15 (plus negative phases)
+**Total Phases**: 15
 
 ## 🛑 CRITICAL GLOBAL LAWS
 > **YOU MUST READ**: `.agent/rules/00-solicitation/global-laws.md` BEFORE starting ANY phase.
@@ -19,15 +19,6 @@
 
 ## Workflow Navigation
 
-### Phase -1: Session Entry Protocol
-> **📖 READ AND EXECUTE**: `.agent/rules/00-solicitation/phase--1-session-entry.md`
-**Quick Summary**: Mandatory context absorption and reflexion injection.
-**Exit Criteria**: State Awareness Report displayed.
-
-### Phase -0.6: Constitutional Compliance Check
-> **📖 READ AND EXECUTE**: `.agent/rules/00-solicitation/phase--0.6-constitutional-compliance.md`
-**Quick Summary**: Enforce Constitution.
-**Exit Criteria**: Clean audit.
 
 ### Phase 0: Ancestral Audit & System Onboarding
 > **📖 READ AND EXECUTE**: `.agent/rules/00-solicitation/phase-0-ancestral-audit.md`
