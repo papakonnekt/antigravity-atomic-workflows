@@ -1,6 +1,6 @@
 {
     "name": "antigravity-atomic-swarms",
-    "version": "2.1.3",
+    "version": "2.1.4",
     "description": "The Antigravity Atomic Swarms workflow system for agentic coding.",
     "main": "index.js",
     "bin": {
