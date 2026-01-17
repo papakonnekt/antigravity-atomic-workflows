@@ -37,6 +37,18 @@
 1.  Update `memory/HEALTH_DASHBOARD.md`.
 2.  Update "BMO Pass Rate".
 
+### Step 4.5: Update Project State
+**Action**: Open `memory/PROJECT_STATE.md`.
+- **IF BMO PASSED**: Mark feature as `[x]` (Completed).
+- **IF BMO FAILED**: Mark feature as `(F)` (Failed).
+
+### Step 4.7: Sync Master Architecture (The Source of Truth)
+**Action**: If BMO PASSED:
+1.  Read `docs/bmo/[feature]/system_model_as_built.md`.
+2.  Update `docs/architecture/system_architecture_manifest.md` with the new reality.
+3.  Log: "Architecture synchronized with reality."
+
+
 ### Step 5: Git Operations
 **Action**:
 1.  **Stage & Commit**:
@@ -57,13 +69,21 @@
 "🎉 **Verification Successful!**
 BMO has certified this feature with a [Score]% verification score.
 **Next Step**: Start the next feature (Research).
-👉 Please run: `/step2-multi-arc-research` to begin the next feature."
+
+⚠️ **Context Refresh Required**:
+To ensure optimal performance, please **Start a New Chat** before running the next command.
+
+👉 **New Chat Command**: `/step2-multi-arc-research`"
 
 **Scenario B: BMO FAILED**
 "🚫 **Verification Failed.**
 BMO detected critical issues or regressions.
 **Next Step**: System Refinement (Fixing).
-👉 Please run: `/step6-refinement` to repair the issues."
+
+⚠️ **Context Refresh Required**:
+To ensure optimal performance, please **Start a New Chat** before running the next command.
+
+👉 **New Chat Command**: `/step6-refinement`"
 
 ### Step 7: Phase Checklist
 **Action**: Open `.agent/checklists/04-bmo-triangulation/phase-6-atomic-exit-checklist.md`.

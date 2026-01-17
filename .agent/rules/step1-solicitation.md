@@ -35,10 +35,10 @@
 **Quick Summary**: Define high-level goal.
 **Exit Criteria**: Goal recorded.
 
-### Phase 1.5: The Vision Canvas (Visual Hypothesis)
-> **📖 READ AND EXECUTE**: `.agent/rules/00-solicitation/phase-1.5-vision-canvas.md`
-**Quick Summary**: Synthesize input into a single-page visual artifact.
-**Exit Criteria**: Vision Canvas approved.
+### Phase 1.5: Feature Extraction & Specification
+> **📖 READ AND EXECUTE**: `.agent/rules/00-solicitation/phase-1.5-feature-extraction.md`
+**Quick Summary**: Deep SCoT extraction of features, stack, and libraries.
+**Exit Criteria**: `feature_inventory.md` approved.
 
 ### Phase 2: "Hindsight 20/20" Visioning
 > **📖 READ AND EXECUTE**: `.agent/rules/00-solicitation/phase-2-hindsight-visioning.md`

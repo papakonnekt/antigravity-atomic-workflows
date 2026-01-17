@@ -44,6 +44,11 @@
 **Quick Summary**: Run tests & coverage.
 **Exit Criteria**: Tests passed.
 
+### Phase 1.5: E2E Smoke Test (Reality Check)
+> **📖 READ AND EXECUTE**: `.agent/rules/04-bmo-triangulation/phase-1.5-e2e-smoke-test.md`
+**Quick Summary**: Verify feature is reachable in running app.
+**Exit Criteria**: Route loads (200 OK).
+
 ### Phase 2: Reverse System Modeling
 > **📖 READ AND EXECUTE**: `.agent/rules/04-bmo-triangulation/phase-2-reverse-modeling.md`
 **Quick Summary**: Check for drift using `as_built` model.

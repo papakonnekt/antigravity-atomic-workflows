@@ -75,6 +75,11 @@
 **Quick Summary**: Repeat for next unit.
 **Exit Criteria**: Feature complete.
 
+### Phase 4.5: Integration & Wiring (The Assembly)
+> **📖 READ AND EXECUTE**: `.agent/rules/03-london-tdd-builder/phase-4.5-integration-wiring.md`
+**Quick Summary**: Connect feature to main app entry point.
+**Exit Criteria**: Feature wired & building.
+
 ### Phase 5: The Mirror Test
 > **📖 READ AND EXECUTE**: `.agent/rules/03-london-tdd-builder/phase-5-mirror-test.md`
 **Quick Summary**: Quality audit.

@@ -56,7 +56,11 @@
 "🎉 **Specification Complete!**
 The blueprint is ready, including all failure modes and security checks.
 **Next Step**: Build the Feature.
-👉 Please run the command: `/step4-london-tdd-builder` to begin the Builder phase."
+
+⚠️ **Context Refresh Required**:
+To ensure optimal performance, please **Start a New Chat** before running the next command.
+
+👉 **New Chat Command**: `/step4-london-tdd-builder`"
 
 ### Step 7: Phase Checklist
 **Action**: Open `.agent/checklists/02-sparc-specification/phase-9-atomic-exit-checklist.md`.
