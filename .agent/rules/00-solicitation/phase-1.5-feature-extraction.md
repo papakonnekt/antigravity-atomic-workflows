@@ -1,73 +1,63 @@
-# Phase 1.5: Feature Extraction & Specification (The Microscope)
+# Phase 1.5: Feature Extraction & Specification (The Collaborative Loop)
 
 > **Parent Workflow**: 00-Solicitation
 > **Phase Number**: 1.5
-> **Objective**: Extract, catalog, and refine *every* feature, library, and requirement using **SCoT**.
+> **Objective**: collaboratively extract, suggest, and refine *every* feature in a recursive loop until the user is satisfied.
 
 ---
 
 ## Prerequisites
 **MUST be completed before this phase**:
-- ✅ Phase 1: The Vision Statement
+- ✅ Phase 1: The Vision Statement (or existing `PROJECT_STATE.md`)
 
 ---
 
 ## Instructions
 
-### Step 1: Deep Extraction (SCoT Protocol)
-**Action**: You MUST use **Structured Chain of Thought (SCoT)** to parse the user's input.
-**Constraint**: Do NOT assume anything. If they said "Auth", you need to know "Which provider?".
-**Internal Process**:
-1.  *Analyze*: Read every word of the user's prompt.
-2.  *Decompose*: Break high-level terms (e.g., "Dashboard") into atomic components (e.g., "Sidebar", "Charts", "Data Fetching").
-3.  *Tech Scan*: Identify implied technologies (e.g., "Real-time" -> WebSockets/Socket.io? "3D" -> Three.js?).
+### Step 0: Context Hydration
+**Action**: Read `memory/PROJECT_STATE.md`.
+**Internal Thought**: "What is the high-level goal? I need to know this to make suggestions."
 
-### Step 2: The "Microscope" (Granular Interrogation)
-**Action**: For every extracted item, ask clarification questions if any detail is fuzzy.
-**Focus Areas**:
-- **Features**: "What exactly does this do?"
-- **UI/UX**: "Dark mode? Animations? Mobile responsive?"
-- **Tech Stack**: "React or Vue? Node or Python? SQL or NoSQL?"
-- **Libraries**: "Any specific preferences? (e.g., Tailwind vs MUI, Zod vs Yup)"
+### Step 1: The Recursive Extraction Loop (REPEAT UNTIL DONE)
+**Action**: Enter a loop of extraction, suggestion, and verification.
 
-### Step 3: Verification Loop (The Mirror)
-**Action**: Present the **Feature Inventory** to the user.
+#### 1.1: Analyze & Suggest
+- **Read**: The user's latest input.
+- **Extract**: Identify features, tech, and constraints using SCoT.
+- **Suggest**: "Based on [User Input], you might also need [Suggestion A] and [Suggestion B]. Should I add these?"
+- **Clarify**: "For [Feature X], did you mean [Option A] or [Option B]?"
+
+#### 1.2: Update Inventory (Real-Time)
+- **Action**: Update `docs/feature_inventory.md` with *confirmed* items.
+- **Display**: Show the current "Draft Inventory" in the chat.
+    ```markdown
+    **Current Inventory**:
+    1. [Feature 1]
+    2. [Feature 2]
+    ...
+    ```
+
+#### 1.3: The "Anything Else?" Gate
+- **Ask**: "Is there anything else you can think of? Or any other features I should suggest?"
+- **If User says 'More'**: Repeat Step 1.1.
+- **If User says 'Done'**: Proceed to Step 2.
+
+### Step 2: Final Verification (The Mirror)
+**Action**: Present the **Final Feature Inventory** to the user.
 **Prompt**:
 ```
-┌─────────────────── FEATURE INVENTORY (DRAFT) ───────────────────┐
-| 1. [Feature]: [Description] (Tech: [Implied Stack])             |
-| 2. [Feature]: [Description] (Tech: [Implied Stack])             |
-| 3. [Feature]: [Description] (Tech: [Implied Stack])             |
-└─────────────────────────────────────────────────────────────────┘
-I have used SCoT to break this down.
-- Am I missing any features?
-- Are these the correct libraries/languages?
-- Is there anything else?
+┌─────────────────── LOCKED FEATURE INVENTORY ───────────────────┐
+| [Full List of Features, Tech Stack, and Libraries]             |
+└────────────────────────────────────────────────────────────────┘
+Are we ready to lock this in and move to Hindsight Visioning?
+1. YES: Proceed.
+2. NO: Back to Loop.
 ```
 
-### Step 4: Documentation (The Source of Truth)
-**Action**: Save the final approved list to `docs/feature_inventory.md`.
-**Format**:
-```markdown
-# Feature Inventory
-## Core Features
-1. [Feature Name]
-   - **Function**: [What it does]
-   - **Form**: [How it looks]
-   - **Tech**: [Library/Language]
+### Step 3: Documentation
+**Action**: Ensure `docs/feature_inventory.md` is complete and saved.
 
-## Technical Stack (Preliminary)
-- **Language**: [e.g., TypeScript]
-- **Frontend**: [e.g., React, Tailwind]
-- **Backend**: [e.g., Node, Express]
-- **Database**: [e.g., PostgreSQL]
-
-## Libraries & Tools
-- [Lib 1]
-- [Lib 2]
-```
-
-### Step 5: Phase Checklist
+### Step 4: Phase Checklist
 **Action**: Open `.agent/checklists/00-solicitation/phase-1.5-feature-extraction-checklist.md`.
 **Instruction**: Verify every item is checked.
 
@@ -75,11 +65,9 @@ I have used SCoT to break this down.
 
 ## Exit Criteria
 **This phase is complete when ALL of the following are true**:
-- ✅ SCoT analysis performed on input.
-- ✅ Granular features defined (Function + Form + Tech).
-- ✅ Libraries and Languages explicitly listed.
-- ✅ User has explicitly confirmed the Inventory is complete.
-- ✅ `docs/feature_inventory.md` created.
+- ✅ Recursive loop continued until user said "Done".
+- ✅ Agent proactively made suggestions.
+- ✅ `docs/feature_inventory.md` created and approved.
 - ✅ Checklist verified.
 
 ---

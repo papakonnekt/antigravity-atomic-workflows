@@ -32,6 +32,7 @@
 
 ### Phase 1: The Vision Statement
 > **📖 READ AND EXECUTE**: `.agent/rules/00-solicitation/phase-1-vision-statement.md`
+**Smart Skip**: If `memory/PROJECT_STATE.md` already contains a high-level goal, SKIP this phase and jump to Phase 1.5.
 **Quick Summary**: Define high-level goal.
 **Exit Criteria**: Goal recorded.
 
